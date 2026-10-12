@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const starterItems = [
   { id: 1, title: 'Autumn campaign launch', category: 'Marketing', description: 'A short announcement outlining the new seasonal collection.', published: true },
