@@ -19,6 +19,8 @@ function App() {
     const matchesVisibility = visibility === 'all' || (visibility === 'published' ? item.published : !item.published)
     return matchesQuery && matchesVisibility
   })
+  const publishedCount = items.filter((item) => item.published).length
+  const draftCount = items.length - publishedCount
 
   useEffect(() => { localStorage.setItem('contentboard-items', JSON.stringify(items)) }, [items])
 
@@ -59,6 +61,12 @@ function App() {
         <div><span className="eyebrow">Content operations</span><h1>ContentBoard</h1><p>Draft, organize, and publish your team’s best work.</p></div>
         <div className="header-count">{items.length} items</div>
       </header>
+
+      <section className="stats" aria-label="Content statistics">
+        <div className="stat-card"><span>Total items</span><strong>{items.length}</strong><small>in your library</small></div>
+        <div className="stat-card"><span>Published</span><strong>{publishedCount}</strong><small>live and visible</small></div>
+        <div className="stat-card"><span>Drafts</span><strong>{draftCount}</strong><small>still in progress</small></div>
+      </section>
 
       <section className="panel composer" aria-labelledby="new-content-heading">
         <div><span className="section-kicker">{editingId ? 'Editing item' : 'New item'}</span><h2 id="new-content-heading">{editingId ? 'Update content' : 'Create content'}</h2></div>
