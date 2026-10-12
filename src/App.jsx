@@ -7,7 +7,12 @@ const starterItems = [
 
 function App() {
   const [items, setItems] = useState(() => {
-    try { return JSON.parse(localStorage.getItem('contentboard-items')) || starterItems } catch { return starterItems }
+    try {
+      const savedItems = JSON.parse(localStorage.getItem('contentboard-items'))
+      return Array.isArray(savedItems) ? savedItems : starterItems
+    } catch {
+      return starterItems
+    }
   })
   const [form, setForm] = useState({ title: '', category: '', description: '' })
   const [editingId, setEditingId] = useState(null)
@@ -22,7 +27,9 @@ function App() {
   const publishedCount = items.filter((item) => item.published).length
   const draftCount = items.length - publishedCount
 
-  useEffect(() => { localStorage.setItem('contentboard-items', JSON.stringify(items)) }, [items])
+  useEffect(() => {
+    try { localStorage.setItem('contentboard-items', JSON.stringify(items)) } catch { /* Storage can be unavailable in private browsing. */ }
+  }, [items])
 
   function handleSubmit(event) {
     event.preventDefault()
