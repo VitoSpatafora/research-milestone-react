@@ -24,7 +24,10 @@ button span { margin-left: .3rem; }
 .content-section { margin-top: 3rem; }
 .section-heading { margin-bottom: 1.1rem; }
 .muted { color: #8a93a3; font-size: .86rem; }
+.filters { align-items: center; display: flex; gap: .75rem; justify-content: space-between; margin-bottom: 1rem; }.filters > input { max-width: 310px; width: 100%; }
+.filter-tabs { background: #e9edf4; border-radius: 9px; display: flex; gap: .15rem; padding: .2rem; }.filter { background: transparent; color: #637086; font-size: .8rem; font-weight: 700; padding: .45rem .65rem; }.filter.active { background: white; box-shadow: 0 1px 3px #cdd3dd; color: #4033a0; }
 .item-list { display: grid; gap: .75rem; }
 .content-card { align-items: start; background: white; border: 1px solid #e7eaf0; border-radius: 14px; display: flex; gap: 1rem; justify-content: space-between; padding: 1.25rem 1.35rem; }
 .card-copy { min-width: 0; }.card-copy p { font-size: .93rem; max-width: 720px; }.category { color: #6255c7; font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .status { background: #f0f2f6; border-radius: 99px; color: #687284; font-size: .76rem; font-weight: 750; padding: .35rem .6rem; white-space: nowrap; }.status.published { background: #dcf7e8; color: #26794b; }
+.card-actions { align-items: flex-end; display: grid; gap: .55rem; justify-items: end; }.text-button { background: transparent; color: #5a4bc5; font-size: .78rem; padding: 0; }.empty-state { border: 1px dashed #ccd4e1; border-radius: 14px; color: #758096; padding: 2rem; text-align: center; }

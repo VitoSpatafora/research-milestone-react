@@ -8,6 +8,14 @@ const starterItems = [
 function App() {
   const [items, setItems] = useState(starterItems)
   const [form, setForm] = useState({ title: '', category: '', description: '' })
+  const [query, setQuery] = useState('')
+  const [visibility, setVisibility] = useState('all')
+
+  const displayedItems = items.filter((item) => {
+    const matchesQuery = `${item.title} ${item.category} ${item.description}`.toLowerCase().includes(query.toLowerCase())
+    const matchesVisibility = visibility === 'all' || (visibility === 'published' ? item.published : !item.published)
+    return matchesQuery && matchesVisibility
+  })
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -18,6 +26,10 @@ function App() {
 
   function updateField(event) {
     setForm({ ...form, [event.target.name]: event.target.value })
+  }
+
+  function togglePublished(id) {
+    setItems((current) => current.map((item) => item.id === id ? { ...item, published: !item.published } : item))
   }
 
   return (
@@ -38,9 +50,11 @@ function App() {
       </section>
 
       <section className="content-section" aria-labelledby="content-heading">
-        <div className="section-heading"><div><span className="section-kicker">Library</span><h2 id="content-heading">Your content</h2></div><span className="muted">{items.length} entries</span></div>
+        <div className="section-heading"><div><span className="section-kicker">Library</span><h2 id="content-heading">Your content</h2></div><span className="muted">{displayedItems.length} of {items.length} entries</span></div>
+        <div className="filters" aria-label="Content filters"><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search content…" aria-label="Search content" /><div className="filter-tabs">{['all', 'published', 'draft'].map((option) => <button key={option} className={visibility === option ? 'filter active' : 'filter'} onClick={() => setVisibility(option)}>{option === 'all' ? 'All' : option[0].toUpperCase() + option.slice(1)}</button>)}</div></div>
         <div className="item-list">
-          {items.map((item) => <article className="content-card" key={item.id}><div className="card-copy"><span className="category">{item.category}</span><h3>{item.title}</h3><p>{item.description}</p></div><span className={item.published ? 'status published' : 'status'}>{item.published ? 'Published' : 'Draft'}</span></article>)}
+          {displayedItems.map((item) => <article className="content-card" key={item.id}><div className="card-copy"><span className="category">{item.category}</span><h3>{item.title}</h3><p>{item.description}</p></div><div className="card-actions"><span className={item.published ? 'status published' : 'status'}>{item.published ? 'Published' : 'Draft'}</span><button className="text-button" onClick={() => togglePublished(item.id)}>{item.published ? 'Unpublish' : 'Publish'}</button></div></article>)}
+          {!displayedItems.length && <div className="empty-state">No items match these filters. Try a different search or status.</div>}
         </div>
       </section>
     </main>
