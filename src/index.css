@@ -21,6 +21,7 @@ input:focus, textarea:focus { border-color: #7869e6; box-shadow: 0 0 0 3px #eeec
 .wide { grid-column: 1 / -1; }
 button { background: #5546c6; border: 0; border-radius: 9px; color: white; cursor: pointer; font-weight: 750; justify-self: start; padding: .75rem 1rem; }
 button span { margin-left: .3rem; }
+.form-actions { align-items: center; display: flex; gap: .7rem; }.cancel-button { background: transparent; color: #677184; padding: .55rem; }
 .content-section { margin-top: 3rem; }
 .section-heading { margin-bottom: 1.1rem; }
 .muted { color: #8a93a3; font-size: .86rem; }
@@ -30,4 +31,4 @@ button span { margin-left: .3rem; }
 .content-card { align-items: start; background: white; border: 1px solid #e7eaf0; border-radius: 14px; display: flex; gap: 1rem; justify-content: space-between; padding: 1.25rem 1.35rem; }
 .card-copy { min-width: 0; }.card-copy p { font-size: .93rem; max-width: 720px; }.category { color: #6255c7; font-size: .75rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .status { background: #f0f2f6; border-radius: 99px; color: #687284; font-size: .76rem; font-weight: 750; padding: .35rem .6rem; white-space: nowrap; }.status.published { background: #dcf7e8; color: #26794b; }
-.card-actions { align-items: flex-end; display: grid; gap: .55rem; justify-items: end; }.text-button { background: transparent; color: #5a4bc5; font-size: .78rem; padding: 0; }.empty-state { border: 1px dashed #ccd4e1; border-radius: 14px; color: #758096; padding: 2rem; text-align: center; }
+.card-actions { align-items: flex-end; display: grid; gap: .55rem; justify-items: end; }.row-actions { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: end; }.text-button { background: transparent; color: #5a4bc5; font-size: .78rem; padding: 0; }.danger { color: #c4455b; }.empty-state { border: 1px dashed #ccd4e1; border-radius: 14px; color: #758096; padding: 2rem; text-align: center; }
